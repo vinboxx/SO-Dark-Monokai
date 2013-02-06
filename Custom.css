@@ -145,7 +145,7 @@
 
 #-webkit-web-inspector .monospace,
 #-webkit-web-inspector .source-code {
-  color: #CCC !important;
+  /*color: #CCC !important;*/
 }
 
 #-webkit-web-inspector .pane .monospace,
@@ -187,6 +187,11 @@
   font-family: 'DroidSansMono', Menlo, monospace !important;
   background: #242424;
   color: #AAA !important;
+}
+
+#-webkit-web-inspector #console-messages .monospace,
+#-webkit-web-inspector #console-messages .source-code {
+  color: #CCC !important;
 }
 
 #-webkit-web-inspector #console-messages a {
@@ -264,7 +269,7 @@
 /**********************************************/
 
 #-webkit-web-inspector #console-prompt {
-  color: #f1f1f1 !important;
+  /*color: #f1f1f1 !important;*/
   border-top:1px solid transparent !important;
 }
 
@@ -294,9 +299,6 @@
   font-size: 12px !important;
 }
 
-#-webkit-web-inspector #elements-content .highlight {
-  color: #f1f1f1;
-}
 
 #-webkit-web-inspector #elements-content li.hovered:not(.selected) .selection {
   background: rgba(255, 255, 255, .2) !important;
