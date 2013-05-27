@@ -26,6 +26,8 @@
     lightgreen: #a6e70a;
     lightblue: #72d9e7;
     purple: #a775ff;
+    yellow: #e6da83;
+    darkred: #c41a16;
 */
 
 /*
@@ -364,24 +366,56 @@
 #-webkit-web-inspector #toolbar {
     background: -webkit-linear-gradient(#505050,#383838) !important;
     border-top: 1px solid #222 !important;
-    border-bottom: 1px solid #333 !important;
+    border-bottom: 1px solid #222 !important;
     box-shadow: inset 0 1px 0 #6E6E6E, 0 2px 2px rgba(0, 0, 0, 0.4), 0 -2px 2px rgba(0, 0, 0, 0.4) !important;
+    height: auto !important;
 }
 
-#-webkit-web-inspector.compact #toolbar .toolbar-item.toggleable {
-    margin-top: -1px !important;
-    height: 34px !important;
+#-webkit-web-inspector .toolbar-label {
+    color: #999 !important;
+    position: relative !important;
+    top: 0 !important;
 }
 
-#-webkit-web-inspector #toolbar .toolbar-item.toggleable.toggled-on {
+#-webkit-web-inspector #toolbar > button {
+    box-shadow: none !important;
+    border: 0 none !important;
+    line-height: 22px !important;
+    padding: 4px 14px 6px !important;
+    cursor: pointer !important;
+}
+
+#-webkit-web-inspector .toolbar-item.toggleable.toggled-on {
     background-color: rgba(0,0,0,0.4) !important;
 }
 
-#-webkit-web-inspector #toolbar .toolbar-label {
-    color: #dedede !important;
+#-webkit-web-inspector button:hover {
+    background-color: none !important;
 }
 
-.split-view-sidebar-right .pane .sidebar-separator {
+#-webkit-web-inspector button.status-bar-item.toggled-on .glyph {
+    top: -1px !important;
+    background-color: #F9275D !important;
+}
+
+#-webkit-web-inspector #toolbar > button:hover .toolbar-label,
+#-webkit-web-inspector .toolbar-item.toggleable.toggled-on .toolbar-label {
+    color: #f8f8f8 !important;
+}
+
+#-webkit-web-inspector #toolbar div:first-child {
+    display: none !important;
+}
+
+#-webkit-web-inspector #toolbar > div:first-child {
+    display: block !important;
+}
+
+#-webkit-web-inspector #main {
+    top: 34px !important;
+}
+
+#-webkit-web-inspector .split-view-sidebar-right .pane .sidebar-separator {
     background-image: -webkit-linear-gradient(#505050,#383838) !important;
     padding: 2px 5px !important;
     border-top: 1px solid #636363 !important;
@@ -392,6 +426,14 @@
     text-overflow: ellipsis !important;
     overflow: hidden !important;
     font-size: 11px !important;
+}
+
+#-webkit-web-inspector .toolbar-item {
+    height: 37px !important;
+}
+
+#-webkit-web-inspector .close-left {
+    margin: 10px 0 0 0 !important;
 }
 
 /* Panes */
@@ -422,11 +464,6 @@
 
 #-webkit-web-inspector .section .properties .dimmed {
     opacity: 0.8 !important;
-}
-
-#-webkit-web-inspector .monospace,
-#-webkit-web-inspector .source-code {
-    color: #000 !important;
 }
 
 #-webkit-web-inspector .suggest-box {
@@ -468,10 +505,6 @@
     border-bottom: 1px solid #333 !important;
 }
 
-#-webkit-web-inspector .pane .monospace {
-    border-top: #f00 !important;
-}
-
 #-webkit-web-inspector .pane > .title {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444)) !important;
     color: #bbb !important;
@@ -495,11 +528,12 @@
 #-webkit-web-inspector .monospace,
 #-webkit-web-inspector .source-code {
     color: #CCC !important;
+    font-size: 12px !important;
 }
 
 #-webkit-web-inspector .pane .monospace,
 #-webkit-web-inspector .pane .source-code {
-    color: #ccc !important;
+    color: #CCC !important;
 }
 
 #-webkit-web-inspector select.status-bar-item,
@@ -547,7 +581,8 @@
 }
 
 #-webkit-web-inspector .resources.panel .data-grid table.data,
-#-webkit-web-inspector .resources.panel table.header .data-grid th {
+#-webkit-web-inspector .resources.panel table.header .data-grid th,
+#-webkit-web-inspector .data-grid th {
     background-image: none !important;
 }
 
@@ -571,15 +606,28 @@
     margin-bottom: 5px !important;
 }
 
+/* Scope Variables */
+#-webkit-web-inspector .console-formatted-object,
+#-webkit-web-inspector .console-formatted-node,
+#-webkit-web-inspector .console-formatted-array {
+    color: #a775ff !important;
+}
+
+#-webkit-web-inspector .section .properties .name,
+#-webkit-web-inspector .event-properties .name,
+#-webkit-web-inspector .console-formatted-object .name {
+    color: #72d9e7 !important;
+}
+
 /* Scripts */
 
 #-webkit-web-inspector .scripts.panel .sidebar-overlay {
-    background-color: #242424;
+    background: #242424;
 }
 
 #-webkit-web-inspector .scripts.panel .outline-disclosure li.selected .selection,
 #-webkit-web-inspector .outline-disclosure ol:focus li.selected {
-    background-color: #444 !important;
+    background: #444 !important;
 }
 
 
@@ -592,12 +640,14 @@
 
 /* Add drop down arrows to Event Listeners */
 #-webkit-web-inspector .section.expanded .header::before,
-#-webkit-web-inspector .event-bars .event-bar.expanded .header::before {
+#-webkit-web-inspector .event-bars .event-bar.expanded .header::before,
+#-webkit-web-inspector #scripts-debug-sidebar-contents .properties-tree li.parent.expanded::before {
     content: url(chrome-devtools://devtools/Images/disclosureTriangleSmallDownWhite.png) !important;
 }
 
 #-webkit-web-inspector .section .header::before,
-#-webkit-web-inspector .event-bars .event-bar .header::before {
+#-webkit-web-inspector .event-bars .event-bar .header::before,
+#-webkit-web-inspector #scripts-debug-sidebar-contents .properties-tree li.parent::before {
     content: url(chrome-devtools://devtools/Images/disclosureTriangleSmallRightWhite.png) !important;
 }
 
@@ -653,6 +703,79 @@
     text-shadow: none !important;
 }
 
+/* Sources */
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-property {
+    color: #72d9e7 !important;
+}
+
+#-webkit-web-inspector .CodeMirror .cm-atom,
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-number,
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-variable-2,
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-string-2 {
+    color: #a775ff !important;
+}
+
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-string {
+    color: #e6da83 !important;
+}
+
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-comment {
+    color: #777 !important;
+}
+
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-meta.
+#-webkit-web-inspector .cm-s-web-inspector-css span..revision-history-link {
+    color: #00a8ff !important;
+}
+
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-tag,
+#-webkit-web-inspector .cm-s-web-inspector-css span.cm-qualifier {
+    color: #a6e70a !important;
+}
+
+#-webkit-web-inspector body.drawer-visible #drawer {
+    background: #222 !important;
+}
+
+#-webkit-web-inspector .outline-disclosure > ol .source-code {
+    color: #000 !important;
+}
+
+#-webkit-web-inspector #drawer-contents .webkit-line-number {
+    background: #333 !important;
+    border-right: 1px solid #222 !important;
+    color: #999 !important;
+}
+
+#-webkit-web-inspector .breakpoint-list li {
+    color: #e6da83 !important;
+}
+
+#-webkit-web-inspector .sidebar-pane > .body .info,
+#-webkit-web-inspector .sidebar-label,
+#-webkit-web-inspector .placard .title,
+#-webkit-web-inspector .placard .subtitle {
+    color: #AAA !important;
+}
+
+/* Call Stack */
+#-webkit-web-inspector .placard.selected {
+    background: #333 !important;
+    border-top: 0 !important;
+}
+
+#-webkit-web-inspector .placard:nth-of-type(2n) {
+    background: #444 !important;
+    border-top: 0 !important;
+}
+
+#-webkit-web-inspector .sidebar-pane > .body .placard + .info {
+    background: #222 !important;
+    border-top: 0 !important;
+    color: #c41a16 !important;
+    font-style: normal !important;
+}
+
 /**********************************************/
 /* Console
 /**********************************************/
@@ -681,7 +804,6 @@
 
 #-webkit-web-inspector #console-messages .console-message, #-webkit-web-inspector .console-user-command {
     border-top: none !important;
-    border-bottom: 1px dashed #333 !important;
 }
 
 #-webkit-web-inspector #console-messages .console-user-command > .console-message-text {
@@ -716,10 +838,11 @@
     color: #96cbfe !important;
 }
 
+#-webkit-web-inspector .styles-section.matched-styles .properties li.parent .expand-element,
 #-webkit-web-inspector #console-messages .console-group-messages .section .header::before,
 #-webkit-web-inspector #console-messages .properties-tree li.parent::before,
 #-webkit-web-inspector .outline-disclosure li.parent::before {
-    content: url(chrome-devtools://devtools/Images/treeRightTriangleWhite.png) #242424 !important;
+    content: url(chrome-devtools://devtools/Images/disclosureTriangleSmallRightWhite.png) #242424 !important;
 }
 
 #-webkit-web-inspector .properties-tree li,
@@ -732,10 +855,11 @@
     background-color: inherit !important;
 }
 
+#-webkit-web-inspector .styles-section.matched-styles .properties li.parent.expanded .expand-element,
 #-webkit-web-inspector #console-messages .console-group-messages .section.expanded .header::before,
 #-webkit-web-inspector #console-messages .properties-tree li.parent.expanded::before,
 #-webkit-web-inspector .outline-disclosure li.parent.expanded::before {
-    content: url(chrome-devtools://devtools/Images/treeDownTriangleWhite.png) #242424 !important;
+    content: url(chrome-devtools://devtools/Images/disclosureTriangleSmallDownWhite.png) #242424 !important;
 }
 
 #-webkit-web-inspector #console-messages .console-error-level .console-message-text {
@@ -799,21 +923,13 @@
     background: rgba(255, 255, 255, .2) !important;
 }
 
-#-webkit-web-inspector #elements-content .selection.selected {
-    z-index: 0 !important;
-}
-
 #-webkit-web-inspector #elements-content ol:focus li.selected .selection {
     background: #444 !important;
 }
 
-#-webkit-web-inspector #elements-content .selected .highlight {
-    position: relative;
-    z-index: 2;
-}
-
 #-webkit-web-inspector #elements-content .selected {
     background-color: #333 !important;
+    border-left: 3px solid #ccc !important;
 }
 
 #-webkit-web-inspector #elements-content .editing {
@@ -822,13 +938,13 @@
 }
 
 #-webkit-web-inspector #elements-content .parent::before {
-    content: url(chrome-devtools://devtools/Images/treeRightTriangleWhite.png) !important;
+    content: url(chrome-devtools://devtools/Images/disclosureTriangleSmallRightWhite.png) !important;
     position: relative;
     z-index: 999;
 }
 
 #-webkit-web-inspector #elements-content .parent.expanded::before {
-    content: url(chrome-devtools://devtools/Images/treeDownTriangleWhite.png) !important;
+    content: url(chrome-devtools://devtools/Images/disclosureTriangleSmallDownWhite.png) !important;
 }
 
 #-webkit-web-inspector .styles-element-state-pane {
@@ -944,4 +1060,23 @@
 
 #-webkit-web-inspector .webkit-javascript-regexp {
     color: rgb(230, 218, 131) !important;
+}
+
+/**********************************************/
+/* Popup (popover)
+/**********************************************/
+#-webkit-web-inspector .popover {
+    -webkit-border-image: none !important;
+    background: #333 !important;
+    box-shadow: 0 0 10px 0 #333 !important;
+}
+
+#-webkit-web-inspector .popover .content span {
+    color: #fff !important;
+    padding-top: 10px;
+}
+
+#-webkit-web-inspector .popover .arrow {
+    margin-left: 10px !important;
+    margin-top: -15px !important;
 }
